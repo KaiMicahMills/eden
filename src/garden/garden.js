@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Genesis from "./genesis/genesis";
 
 /**
  * EDEN
@@ -11,8 +12,16 @@ import React from 'react';
  */
 
 const Garden = () => {
+
+  const [everything, setEverything] = useState({
+
+  });
+
   return (
-    <></>
+    <>
+      <Genesis everything={everything} setEverything={setEverything} />
+      <div></div>
+    </>
   );
 };
 
