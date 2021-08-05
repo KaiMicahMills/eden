@@ -16,10 +16,12 @@ import Creation from "./creation/creation";
 const Garden = () => {
 
   const [everything, setEverything] = useState([]);
+  const [timesGenerated, setTimesGenerated] = useState(0);
 
   return (
-    <>
-      <Genesis setEverything={setEverything} />
+    <div className="space">
+      <Genesis setEverything={setEverything} timesGenerated={timesGenerated} />
+      <h1 className="title">EDEN</h1>
       <div className="garden">
         {
           everything.map((creation) => {
@@ -29,7 +31,8 @@ const Garden = () => {
           })
         }
       </div>
-    </>
+      <button className="generate" onClick={() => setTimesGenerated(timesGenerated + 1)}>Generate</button>
+    </div>
   );
 };
 
