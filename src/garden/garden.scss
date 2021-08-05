@@ -1,0 +1,53 @@
+/**
+  Garden Stylesheet
+ */
+
+$grass: #8DAA91;
+$human-light: #F7D4A6;
+$human-mid: #D9A665;
+$human-dark: #895323;
+$apple: #912F56;
+$campfire: #FF7F11;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.garden {
+  height: 750px;
+  width: 750px;
+  background-color: #000;
+
+  .creation {
+    height: 25px;
+    width: 25px;
+    float: left;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    &.grass {
+      background-color: $grass;
+    }
+
+    &.human {
+      background-color: $human-light;
+    }
+
+    &.apple {
+      background-color: $apple;
+    }
+  }
+}

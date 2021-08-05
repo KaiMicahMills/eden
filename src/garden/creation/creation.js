@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../garden.scss';
+import '../garden.scss';
 
 /**
  * Base creation entity style
@@ -10,7 +10,7 @@ import styles from '../garden.scss';
 
 const Creation = ({ type }) => {
   return (
-    <div className={styles[type]}></div>
+    <div className={`creation ${type}`}></div>
   )
 }
 

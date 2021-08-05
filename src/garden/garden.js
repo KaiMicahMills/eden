@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Genesis from "./genesis/genesis";
+import './garden.scss';
+import Creation from "./creation/creation";
 
 /**
  * EDEN
@@ -13,14 +15,20 @@ import Genesis from "./genesis/genesis";
 
 const Garden = () => {
 
-  const [everything, setEverything] = useState({
-
-  });
+  const [everything, setEverything] = useState([]);
 
   return (
     <>
-      <Genesis everything={everything} setEverything={setEverything} />
-      <div></div>
+      <Genesis setEverything={setEverything} />
+      <div className="garden">
+        {
+          everything.map((creation) => {
+            return (
+              <Creation type={creation} key={Math.random()} />
+            )
+          })
+        }
+      </div>
     </>
   );
 };
