@@ -29,4 +29,29 @@ const Creation = ({ type }) => {
   }
 }
 
+export const FOV = (radius, position, everything) => {
+  let vision = []
+
+  for(let i = 0; i <= radius; i++){
+
+    if(i === 0) {
+
+      let baseline = everything[position - radius, position + radius];
+
+      vision.push(baseline);
+
+    } else {
+
+      let up = everything[position - ((i * 30) + (radius - i)), position - ((i * 30) - (radius - i))];
+      let down = everything[position + ((i * 30) - (radius - i)), position + ((i * 30) + (radius - i))];
+
+      vision.push(up);
+      vision.push(down);
+    }
+
+  }
+
+  return vision;
+}
+
 export default Creation;

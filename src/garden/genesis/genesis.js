@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { FOV } from '../creation/creation';
 
 /**
  * Genesis
@@ -6,7 +7,7 @@ import { useEffect } from 'react';
  * @constructor
  */
 
-const Genesis = ({ setEverything, timesGenerated }) => {
+const Genesis = ({ everything, setEverything, timesGenerated }) => {
 
   const creationTypes = [
     {
@@ -68,17 +69,27 @@ const Genesis = ({ setEverything, timesGenerated }) => {
        * Update state if last run
        */
       if (everything.length === maxCreation) setEverything(everything);
-
     }
+    console.log(everything);
   }
 
+
+  useEffect(() => {
+    setInterval(() => {
+      everything.forEach((type, index) => {
+        if(type === "human") {
+          console.log(FOV(5, index, everything));
+        }
+      })
+      
+    }, 1000)
+  }, [everything])
   /**
    * Generate the world
    */
   useEffect(() => {
     generateWorld();
   }, [timesGenerated])
-
   return null;
 }
 
