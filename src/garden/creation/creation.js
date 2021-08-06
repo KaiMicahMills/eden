@@ -8,7 +8,7 @@ import '../garden.scss';
  * @constructor
  */
 
-const Creation = ({ type }) => {
+const Creation = ({ type, index }) => {
 
   const skinTones = [
     '#F7D4A6',
@@ -20,33 +20,40 @@ const Creation = ({ type }) => {
 
   if (type === "human") {
     return (
-      <div className={`creation ${type}`} style={{ opacity: range(0.95, 1), backgroundColor: skinTones[Math.floor(Math.random()*skinTones.length)] }}></div>
+      <div className={`creation ${type}`} style={{ opacity: range(0.95, 1), backgroundColor: skinTones[Math.floor(Math.random()*skinTones.length)] }}>
+        <p>{index}</p>
+      </div>
     )
   } else {
     return (
-      <div className={`creation ${type}`} style={{ opacity: range(0.95, 1) }}></div>
+      <div className={`creation ${type}`} style={{ opacity: range(0.95, 1) }}>
+        <p>{index}</p>
+      </div>
     )
   }
 }
 
-export const FOV = (radius, position, everything) => {
-  let vision = []
+export const FOV = (radius, position, everything, maxCreation) => {
+  let vision = [];
 
   for(let i = 0; i <= radius; i++){
 
     if(i === 0) {
 
-      let baseline = everything[position - radius, position + radius];
+      let baseline = everything.slice(position - radius, position + radius);
 
-      vision.push(baseline);
+      vision = [...vision, ...baseline];
 
     } else {
 
-      let up = everything[position - ((i * 30) + (radius - i)), position - ((i * 30) - (radius - i))];
-      let down = everything[position + ((i * 30) - (radius - i)), position + ((i * 30) + (radius - i))];
+      let up = everything.slice(
+        position - ((i * ((maxCreation + 1) / 30)) + (radius - i)),
+        position - ((i * ((maxCreation + 1) / 30)) - (radius - i)));
+      let down = everything.slice(
+        position + ((i * ((maxCreation + 1) / 30)) - (radius - i)),
+        position + ((i * ((maxCreation + 1) / 30)) + (radius - i)));
 
-      vision.push(up);
-      vision.push(down);
+      vision = [...vision, ...up, ...down];
     }
 
   }

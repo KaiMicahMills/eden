@@ -24,9 +24,9 @@ const Garden = () => {
       <h1 className="title">EDEN</h1>
       <div className="garden">
         {
-          everything.map((creation) => {
+          everything.map((creation, index) => {
             return (
-              <Creation type={creation} key={Math.random()} />
+              <Creation type={creation} key={Math.random()} index={index} />
             )
           })
         }

@@ -9,6 +9,8 @@ import { FOV } from '../creation/creation';
 
 const Genesis = ({ everything, setEverything, timesGenerated }) => {
 
+  const maxCreation = 899;
+
   const creationTypes = [
     {
       id: "apple",
@@ -21,7 +23,6 @@ const Genesis = ({ everything, setEverything, timesGenerated }) => {
   ];
 
   const generateWorld = () => {
-    const maxCreation = 899;
     const everything = [];
 
     for (let i = 0; i <= maxCreation; i++) {
@@ -70,20 +71,22 @@ const Genesis = ({ everything, setEverything, timesGenerated }) => {
        */
       if (everything.length === maxCreation) setEverything(everything);
     }
-    console.log(everything);
   }
 
-
+  /**
+   *
+   */
   useEffect(() => {
     setInterval(() => {
       everything.forEach((type, index) => {
         if(type === "human") {
-          console.log(FOV(5, index, everything));
+          console.log(FOV(5, index, everything, maxCreation));
         }
       })
       
     }, 1000)
   }, [everything])
+
   /**
    * Generate the world
    */
